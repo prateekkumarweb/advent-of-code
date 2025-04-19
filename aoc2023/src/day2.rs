@@ -10,31 +10,28 @@ pub fn part_1(input: &str) -> String {
         let caps = re.captures(line).unwrap();
         let game = caps.get(1).unwrap().as_str().parse::<u32>().unwrap();
         let line = caps.get(2).unwrap().as_str();
-        let rounds = line
-            .split("; ")
-            .map(|l| {
-                let splits = l.split(", ");
-                let (mut r, mut g, mut b) = (0, 0, 0);
-                for sp in splits {
-                    let mut sp = sp.split(' ');
-                    let num = sp.next().unwrap().parse::<u32>().unwrap();
-                    let color = sp.next().unwrap();
-                    match color {
-                        "red" => {
-                            r = num;
-                        }
-                        "green" => {
-                            g = num;
-                        }
-                        "blue" => {
-                            b = num;
-                        }
-                        _ => {}
+        let rounds = line.split("; ").all(|l| {
+            let splits = l.split(", ");
+            let (mut r, mut g, mut b) = (0, 0, 0);
+            for sp in splits {
+                let mut sp = sp.split(' ');
+                let num = sp.next().unwrap().parse::<u32>().unwrap();
+                let color = sp.next().unwrap();
+                match color {
+                    "red" => {
+                        r = num;
                     }
+                    "green" => {
+                        g = num;
+                    }
+                    "blue" => {
+                        b = num;
+                    }
+                    _ => {}
                 }
-                r <= red && b <= blue && g <= green
-            })
-            .all(|x| x);
+            }
+            r <= red && b <= blue && g <= green
+        });
         if rounds { game } else { 0 }
     });
 

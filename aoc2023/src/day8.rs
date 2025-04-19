@@ -44,7 +44,7 @@ where
     }
 }
 
-fn gcd(mut n: u64, mut m: u64) -> u64 {
+const fn gcd(mut n: u64, mut m: u64) -> u64 {
     // Copied from https://gist.github.com/victor-iyi/8a84185c1d52419b0d4915a648d5e3e1
     while m != 0 {
         if m < n {

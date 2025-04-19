@@ -62,7 +62,7 @@ fn determine_type(cards: Vec<u8>) -> Hand {
     Hand { cards, ty }
 }
 
-fn char_map(c: char, joker: bool) -> u8 {
+const fn char_map(c: char, joker: bool) -> u8 {
     match c {
         'A' => 14,
         'K' => 13,

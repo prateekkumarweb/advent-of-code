@@ -31,19 +31,19 @@ impl HasExplored {
         self.3
     }
 
-    fn set_right(&mut self) {
+    const fn set_right(&mut self) {
         self.0 = true;
     }
 
-    fn set_left(&mut self) {
+    const fn set_left(&mut self) {
         self.1 = true;
     }
 
-    fn set_up(&mut self) {
+    const fn set_up(&mut self) {
         self.2 = true;
     }
 
-    fn set_down(&mut self) {
+    const fn set_down(&mut self) {
         self.3 = true;
     }
 }

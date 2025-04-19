@@ -1,3 +1,6 @@
+#![forbid(unsafe_code)]
+#![warn(clippy::pedantic, clippy::nursery)]
+
 use aoc_runner_derive::aoc_lib;
 
 pub mod day1;

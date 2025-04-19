@@ -95,7 +95,7 @@ fn replace_start(grid: &mut Vec<Vec<(char, Option<usize>)>>, start_x: usize, sta
         ['L', 'U'] => grid[start_y][start_x] = ('J', Some(0)),
         ['U', 'R'] => grid[start_y][start_x] = ('L', Some(0)),
         _ => unreachable!(),
-    };
+    }
 }
 
 fn traverse(grid: &mut Vec<Vec<(char, Option<usize>)>>) {
