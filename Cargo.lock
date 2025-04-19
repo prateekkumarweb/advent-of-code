@@ -47,6 +47,7 @@ dependencies = [
  "aoc-runner",
  "aoc-runner-derive",
  "itertools",
+ "regex",
 ]
 
 [[package]]
