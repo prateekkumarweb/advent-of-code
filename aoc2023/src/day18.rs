@@ -15,16 +15,16 @@ enum Dir {
 struct Point(i64, i64);
 
 impl Point {
-    fn move_(self, dir: Dir, len: i64) -> Self {
+    const fn move_(self, dir: Dir, len: i64) -> Self {
         match dir {
-            Dir::U => Point(self.0 - len, self.1),
-            Dir::D => Point(self.0 + len, self.1),
-            Dir::L => Point(self.0, self.1 - len),
-            Dir::R => Point(self.0, self.1 + len),
+            Dir::U => Self(self.0 - len, self.1),
+            Dir::D => Self(self.0 + len, self.1),
+            Dir::L => Self(self.0, self.1 - len),
+            Dir::R => Self(self.0, self.1 + len),
         }
     }
 
-    fn taxi_distance(self, p: &Point) -> i64 {
+    const fn taxi_distance(self, p: &Self) -> i64 {
         (self.0 - p.0).abs() + (self.1 - p.1).abs()
     }
 }

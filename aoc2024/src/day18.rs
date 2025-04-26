@@ -86,7 +86,7 @@ pub fn solve_part2(input: &str) -> String {
             found = (i, j);
             break;
         }
-        for row in grid.iter_mut() {
+        for row in &mut grid {
             for cell in row.iter_mut() {
                 if *cell > 0 {
                     *cell = 0;

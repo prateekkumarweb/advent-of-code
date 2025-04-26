@@ -46,7 +46,7 @@ pub fn solve_part1(input: &str) -> usize {
                         end = (i, j);
                         Item::Empty
                     }
-                    _ => panic!("Invalid character at ({}, {}): {}", i, j, c),
+                    _ => panic!("Invalid character at ({i}, {j}): {c}"),
                 })
                 .collect_vec()
         })
@@ -164,7 +164,7 @@ pub fn solve_part2(input: &str) -> usize {
                         end = (i, j);
                         Item::Empty
                     }
-                    _ => panic!("Invalid character at ({}, {}): {}", i, j, c),
+                    _ => panic!("Invalid character at ({i}, {j}): {c}"),
                 })
                 .collect_vec()
         })

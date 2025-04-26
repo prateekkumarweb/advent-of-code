@@ -36,7 +36,7 @@ pub fn solve_part2(input: &str) -> i64 {
 
     let mut sum_prices = HashMap::new();
 
-    for (prices, changes) in result.iter() {
+    for (prices, changes) in &result {
         let mut seen_changes = HashSet::new();
         for i in 3..NSTEPS {
             let change = (changes[i - 3], changes[i - 2], changes[i - 1], changes[i]);

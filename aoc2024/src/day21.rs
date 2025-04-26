@@ -13,7 +13,7 @@ pub fn solve_part1(input: &str) -> usize {
             .into_iter()
             .flat_map(|code| short_len_code(&code))
             .collect_vec();
-        step2.sort_by_key(|p| p.len());
+        step2.sort_by_key(std::string::String::len);
         let least_len = step2.first().unwrap().len();
         step2 = step2
             .into_iter()
@@ -23,14 +23,14 @@ pub fn solve_part1(input: &str) -> usize {
             .into_iter()
             .flat_map(|code| short_len_code(&code))
             .collect_vec();
-        step3.sort_by_key(|p| p.len());
+        step3.sort_by_key(std::string::String::len);
         let len = step3.first().unwrap().len();
 
         result += len
             * code
                 .strip_suffix("A")
                 .unwrap()
-                .trim_start_matches("0")
+                .trim_start_matches('0')
                 .parse::<usize>()
                 .unwrap();
     }
@@ -41,7 +41,7 @@ fn short_len_num_code(code: &str) -> Vec<String> {
     let moves = find_all_moves();
     let mut code = code.chars().rev().collect_vec();
     let mut start = 'A';
-    let mut possible = vec!["".to_string()];
+    let mut possible = vec![String::new()];
     while let Some(end) = code.pop() {
         let possible_moves = moves.get(&(start, end)).unwrap();
         possible = possible
@@ -54,13 +54,13 @@ fn short_len_num_code(code: &str) -> Vec<String> {
             .collect_vec();
         start = end;
     }
-    possible.sort_by_key(|p| p.len());
+    possible.sort_by_key(std::string::String::len);
     possible
 }
 
 fn short_len_code(code: &str) -> Vec<String> {
     let mut start = 'A';
-    let mut possible = vec!["".to_string()];
+    let mut possible = vec![String::new()];
     let mut code = code.chars().rev().collect_vec();
     while let Some(end) = code.pop() {
         let possible_moves = move_char(start, end);
@@ -74,7 +74,7 @@ fn short_len_code(code: &str) -> Vec<String> {
             .collect_vec();
         start = end;
     }
-    possible.sort_by_key(|p| p.len());
+    possible.sort_by_key(std::string::String::len);
     possible
 }
 
@@ -213,7 +213,7 @@ pub fn solve_part2(input: &str) -> usize {
     let all_arr_moves = ("^<>vA".chars())
         .cartesian_product("^<>vA".chars())
         .flat_map(|(a, b)| move_char(a, b))
-        .map(|s| s.to_string());
+        .map(std::string::ToString::to_string);
     let all_moves = all_num_moves.chain(all_arr_moves);
 
     let mut memo = HashMap::new();
@@ -252,7 +252,7 @@ pub fn solve_part2(input: &str) -> usize {
             * code
                 .strip_suffix("A")
                 .unwrap()
-                .trim_start_matches("0")
+                .trim_start_matches('0')
                 .parse::<usize>()
                 .unwrap();
     }
@@ -262,7 +262,7 @@ pub fn solve_part2(input: &str) -> usize {
 fn short_len_num_code2(code: &str, moves: &HashMap<(char, char), Vec<Vec<char>>>) -> Vec<String> {
     let mut code = code.chars().rev().collect_vec();
     let mut start = 'A';
-    let mut possible = vec!["".to_string()];
+    let mut possible = vec![String::new()];
     while let Some(end) = code.pop() {
         let possible_moves = moves.get(&(start, end)).unwrap();
         possible = possible

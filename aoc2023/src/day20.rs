@@ -52,7 +52,7 @@ pub fn part_1(input: &str) -> usize {
                         output,
                     },
                 );
-            } else if n.starts_with("%") {
+            } else if n.starts_with('%') {
                 return (
                     &n[1..],
                     Module {
@@ -60,7 +60,7 @@ pub fn part_1(input: &str) -> usize {
                         output,
                     },
                 );
-            } else if n.starts_with("&") {
+            } else if n.starts_with('&') {
                 return (
                     &n[1..],
                     Module {
@@ -74,11 +74,11 @@ pub fn part_1(input: &str) -> usize {
         .collect();
     let mut memory = HashMap::new();
     let mut state = HashMap::new();
-    for (&n, m) in modules.iter() {
+    for (&n, m) in &modules {
         if m.type_ == ModuleType::Conjunction {
             let mut mem = HashMap::new();
-            for (&n1, m1) in modules.iter() {
-                for &o in m1.output.iter() {
+            for (&n1, m1) in &modules {
+                for &o in &m1.output {
                     if n == o {
                         mem.insert(n1, Value::Low);
                     }
@@ -133,7 +133,7 @@ pub fn part_1(input: &str) -> usize {
                     Value::High => high += module.output.len(),
                     Value::Low => low += module.output.len(),
                 }
-                for &o in module.output.iter() {
+                for &o in &module.output {
                     runs.push((n, val, o));
                 }
             }
@@ -157,7 +157,7 @@ pub fn part_2(input: &str) -> usize {
                         output,
                     },
                 );
-            } else if n.starts_with("%") {
+            } else if n.starts_with('%') {
                 return (
                     &n[1..],
                     Module {
@@ -165,7 +165,7 @@ pub fn part_2(input: &str) -> usize {
                         output,
                     },
                 );
-            } else if n.starts_with("&") {
+            } else if n.starts_with('&') {
                 return (
                     &n[1..],
                     Module {
@@ -179,11 +179,11 @@ pub fn part_2(input: &str) -> usize {
         .collect();
     let mut memory = HashMap::new();
     let mut state = HashMap::new();
-    for (&n, m) in modules.iter() {
+    for (&n, m) in &modules {
         if m.type_ == ModuleType::Conjunction {
             let mut mem = HashMap::new();
-            for (&n1, m1) in modules.iter() {
-                for &o in m1.output.iter() {
+            for (&n1, m1) in &modules {
+                for &o in &m1.output {
                     if n == o {
                         mem.insert(n1, Value::Low);
                     }
@@ -237,18 +237,18 @@ pub fn part_2(input: &str) -> usize {
                     ModuleType::Conjunction => {
                         let mem = memory.get_mut(n).unwrap();
                         mem.insert(from, val);
-                        let out_val = if mem.values().all(|&v| v == Value::High) {
+
+                        if mem.values().all(|&v| v == Value::High) {
                             Value::Low
                         } else {
                             Value::High
-                        };
-                        out_val
+                        }
                     }
                 };
                 if ignore_out {
                     continue;
                 }
-                for &o in module.output.iter() {
+                for &o in &module.output {
                     runs.push((n, val, o));
                 }
             }

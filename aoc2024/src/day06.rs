@@ -10,12 +10,12 @@ enum Dir {
 }
 
 impl Dir {
-    fn turn_90(self) -> Dir {
+    const fn turn_90(self) -> Self {
         match self {
-            Dir::Up => Dir::Right,
-            Dir::Right => Dir::Down,
-            Dir::Down => Dir::Left,
-            Dir::Left => Dir::Up,
+            Self::Up => Self::Right,
+            Self::Right => Self::Down,
+            Self::Down => Self::Left,
+            Self::Left => Self::Up,
         }
     }
 }
@@ -69,12 +69,12 @@ pub fn solve_part1(input: &str) -> usize {
 use std::collections::HashSet;
 
 impl Dir {
-    fn to_char(self) -> char {
+    const fn to_char(self) -> char {
         match self {
-            Dir::Up => '^',
-            Dir::Right => '>',
-            Dir::Down => 'v',
-            Dir::Left => '<',
+            Self::Up => '^',
+            Self::Right => '>',
+            Self::Down => 'v',
+            Self::Left => '<',
         }
     }
 }

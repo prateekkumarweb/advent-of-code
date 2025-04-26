@@ -21,7 +21,7 @@ pub fn solve_part1(input: &str) -> usize {
                 pages_map.insert(*p, i);
             });
             let mut violated = false;
-            for order in orders.iter() {
+            for order in &orders {
                 if let (Some(&a), Some(&b)) = (pages_map.get(&order.0), pages_map.get(&order.1)) {
                     if a > b {
                         violated = true;
@@ -56,7 +56,7 @@ pub fn solve_part2(input: &str) -> usize {
                 pages_map.insert(*p, i);
             });
             let mut violated = false;
-            for order in orders.iter() {
+            for order in &orders {
                 if let (Some(&a), Some(&b)) = (pages_map.get(&order.0), pages_map.get(&order.1)) {
                     if a > b {
                         violated = true;

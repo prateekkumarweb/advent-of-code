@@ -8,7 +8,7 @@ pub fn solve_part1(input: &str) -> usize {
     let lines = input.lines();
     let mut result = 0;
     for line in lines {
-        let mut splits = line.split(':').map(|p| p.trim());
+        let mut splits = line.split(':').map(str::trim);
         let amount = splits.next().unwrap().parse().unwrap();
         let rest = splits.next().unwrap();
         let vals = rest
@@ -39,7 +39,7 @@ pub fn solve_part2(input: &str) -> usize {
     let lines = input.lines();
     let mut result = 0;
     for line in lines {
-        let mut splits = line.split(':').map(|p| p.trim());
+        let mut splits = line.split(':').map(str::trim);
         let amount = splits.next().unwrap().parse().unwrap();
         let rest = splits.next().unwrap();
         let vals = rest
@@ -54,8 +54,9 @@ pub fn solve_part2(input: &str) -> usize {
                     '+' => total += vals[i + 1],
                     '*' => total *= vals[i + 1],
                     '|' => {
-                        total = (total * 10usize.pow(vals[i + 1].checked_ilog10().unwrap_or(0) + 1))
-                            + vals[i + 1]
+                        total = (total
+                            * 10usize.pow(vals[i + 1].checked_ilog10().unwrap_or(0) + 1))
+                            + vals[i + 1];
                     }
                     _ => unreachable!(),
                 }

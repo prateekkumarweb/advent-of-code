@@ -24,7 +24,7 @@ struct Condition {
 }
 
 impl Condition {
-    fn opp(&self) -> Self {
+    const fn opp(&self) -> Self {
         Self {
             var: self.var,
             op: match self.op {
@@ -121,7 +121,7 @@ fn run_part(workflows: &HashMap<&str, Workflow>, part: &Part) -> bool {
     while start != "A" && start != "R" {
         let wf = workflows.get(start).unwrap();
         let mut matched = wf.else_rule;
-        for (cond, to_rule) in wf.rules.iter() {
+        for (cond, to_rule) in &wf.rules {
             let var = match cond.var {
                 Var::X => part.x,
                 Var::M => part.m,
@@ -146,8 +146,8 @@ fn run_part(workflows: &HashMap<&str, Workflow>, part: &Part) -> bool {
 pub fn part_1(input: &str) -> usize {
     let (workflows, parts) = parse_input(input);
     let mut result = 0;
-    for part in parts.iter() {
-        if run_part(&workflows, &part) {
+    for part in &parts {
+        if run_part(&workflows, part) {
             result += part.x + part.m + part.a + part.s;
         }
     }
@@ -158,15 +158,15 @@ pub fn part_1(input: &str) -> usize {
 struct Range(usize, usize);
 
 impl Range {
-    fn reduce(self, op: Op, val: usize) -> Option<Self> {
+    const fn reduce(self, op: Op, val: usize) -> Option<Self> {
         let Self(from, to) = self;
         match op {
             Op::Gt => {
                 let val = val + 1;
                 if val <= from {
-                    Some(Range(from, to))
+                    Some(Self(from, to))
                 } else if val <= to {
-                    Some(Range(val, to))
+                    Some(Self(val, to))
                 } else {
                     None
                 }
@@ -174,9 +174,9 @@ impl Range {
             Op::Lt => {
                 let val = val - 1;
                 if val >= to {
-                    Some(Range(from, to))
+                    Some(Self(from, to))
                 } else if val >= from {
-                    Some(Range(from, val))
+                    Some(Self(from, val))
                 } else {
                     None
                 }
@@ -196,26 +196,26 @@ struct PartRange {
 impl PartRange {
     fn reduce(self, cond: Condition) -> Option<Self> {
         Some(match cond.var {
-            Var::X => PartRange {
+            Var::X => Self {
                 x: self.x.reduce(cond.op, cond.val)?,
                 ..self
             },
-            Var::M => PartRange {
+            Var::M => Self {
                 m: self.m.reduce(cond.op, cond.val)?,
                 ..self
             },
-            Var::A => PartRange {
+            Var::A => Self {
                 a: self.a.reduce(cond.op, cond.val)?,
                 ..self
             },
-            Var::S => PartRange {
+            Var::S => Self {
                 s: self.s.reduce(cond.op, cond.val)?,
                 ..self
             },
         })
     }
 
-    fn combinations(self) -> usize {
+    const fn combinations(self) -> usize {
         (self.x.1 - self.x.0 + 1)
             * (self.m.1 - self.m.0 + 1)
             * (self.a.1 - self.a.0 + 1)
@@ -269,5 +269,5 @@ pub fn part_2(input: &str) -> usize {
             }
         }
     }
-    solutions.into_iter().map(|p| p.combinations()).sum()
+    solutions.into_iter().map(PartRange::combinations).sum()
 }

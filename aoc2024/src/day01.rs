@@ -13,9 +13,9 @@ pub fn solve_part1(input: &str) -> i32 {
         })
         .collect::<Vec<(i32, i32)>>();
     let mut first = array.iter().map(|(a, _)| *a).collect::<Vec<i32>>();
-    first.sort();
+    first.sort_unstable();
     let mut second = array.iter().map(|(_, b)| *b).collect::<Vec<i32>>();
-    second.sort();
+    second.sort_unstable();
     let diff: i32 = first
         .iter()
         .zip(second.iter())
@@ -37,9 +37,9 @@ pub fn solve_part2(input: &str) -> i32 {
         })
         .collect::<Vec<(i32, i32)>>();
     let mut first = array.iter().map(|(a, _)| *a).collect::<Vec<i32>>();
-    first.sort();
+    first.sort_unstable();
     let mut second = array.iter().map(|(_, b)| *b).collect::<Vec<i32>>();
-    second.sort();
+    second.sort_unstable();
     let diff: i32 = first
         .iter()
         .map(|a| a * second.iter().filter(|b| a == *b).count() as i32)

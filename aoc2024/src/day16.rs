@@ -18,7 +18,7 @@ enum Dir {
 }
 
 impl Dir {
-    fn opp(self) -> Self {
+    const fn opp(self) -> Self {
         match self {
             Self::Up => Self::Down,
             Self::Down => Self::Up,
@@ -27,7 +27,7 @@ impl Dir {
         }
     }
 
-    fn perp(self) -> (Self, Self) {
+    const fn perp(self) -> (Self, Self) {
         match self {
             Self::Up => (Self::Left, Self::Right),
             Self::Down => (Self::Right, Self::Left),

@@ -14,7 +14,7 @@ pub fn solve_part1(input: &str) -> i32 {
                 .collect::<Vec<i32>>();
             let safe = diff.iter().all(|&x| x == -1 || x == -2 || x == -3)
                 || diff.iter().all(|&x| x == 1 || x == 2 || x == 3);
-            safe as i32
+            i32::from(safe)
         })
         .sum::<i32>();
     result
@@ -52,13 +52,13 @@ pub fn solve_part2(input: &str) -> i32 {
                         || diff2.iter().all(|&x| x == 1 || x == 2 || x == 3);
                 }
                 if !safe {
-                    let mut diff2 = diff.clone();
+                    let mut diff2 = diff;
                     diff2.remove(diff2.len() - 1);
                     safe = diff2.iter().all(|&x| x == -1 || x == -2 || x == -3)
                         || diff2.iter().all(|&x| x == 1 || x == 2 || x == 3);
                 }
             }
-            safe as i32
+            i32::from(safe)
         })
         .sum::<i32>();
     result

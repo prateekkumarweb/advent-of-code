@@ -25,7 +25,7 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     let part = args.next().expect("expected part").to_string();
     let day = if day.starts_with("day") {
         let day = day[3..].parse::<u8>().unwrap();
-        if day < 1 || day > 25 {
+        if !(1..=25).contains(&day) {
             panic!("Expected from day1 to day25");
         }
         day
@@ -34,7 +34,7 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     };
     let part = if part.starts_with("part") {
         let part = part[4..].parse::<u8>().unwrap();
-        if part < 1 || part > 2 {
+        if !(1..=2).contains(&part) {
             panic!("Expected part1 or part2");
         }
         part
@@ -43,10 +43,7 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     };
     let input = parse_macro_input!(input as ItemFn);
     let fn_name = &input.sig.ident;
-    let new_fn_name = Ident::new(
-        &format!("aoc_day{}_part{}", day, part),
-        Span::call_site().into(),
-    );
+    let new_fn_name = Ident::new(&format!("aoc_day{}_part{}", day, part), Span::call_site());
     assert_eq!(input.sig.inputs.len(), 1);
 
     let mut lock = AOC_SOLUTIONS.write().unwrap();
@@ -83,7 +80,7 @@ pub fn aoc_main(input: TokenStream) -> TokenStream {
         let day = Ident::new(&format!("day{:02}", d), Span::call_site());
         let input_str = format!("../input/{}/day{}.txt", year, d);
         if let Some(p1) = &sol.part_1 {
-            let p1 = Ident::new(&p1, Span::call_site());
+            let p1 = Ident::new(p1, Span::call_site());
             stream = quote! {
                 #stream
                 let input = include_str!(#input_str);
@@ -92,7 +89,7 @@ pub fn aoc_main(input: TokenStream) -> TokenStream {
             }
         }
         if let Some(p2) = &sol.part_2 {
-            let p2 = Ident::new(&p2, Span::call_site());
+            let p2 = Ident::new(p2, Span::call_site());
             stream = quote! {
                 #stream
                 let input = include_str!(#input_str);

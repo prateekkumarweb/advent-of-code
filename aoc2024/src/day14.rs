@@ -33,7 +33,7 @@ pub fn solve_part1(input: &str) -> usize {
         (101, 103)
     };
 
-    let mut robots = input.clone();
+    let mut robots = input;
 
     for r in &mut robots {
         r.0[0] = (r.0[0] + 100 * r.1[0]).rem_euclid(width as i32);
@@ -111,7 +111,7 @@ pub fn solve_part2(input: &str) -> usize {
         (101, 103)
     };
 
-    let mut robots = input.clone();
+    let mut robots = input;
 
     for iter in 1.. {
         for r in &mut robots {

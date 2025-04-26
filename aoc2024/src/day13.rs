@@ -45,10 +45,10 @@ pub fn solve_part1(input: &str) -> i32 {
             );
             let inv_rhs_rem = (inv_0_rhs.0 % det, inv_0_rhs.1 % det);
             let inv_rhs_div = (inv_0_rhs.0 / det, inv_0_rhs.1 / det);
-            if inv_rhs_rem != (0, 0) {
-                0
-            } else {
+            if inv_rhs_rem == (0, 0) {
                 inv_rhs_div.0 * 3 + inv_rhs_div.1
+            } else {
+                0
             }
         })
         .sum::<i32>();
@@ -101,10 +101,10 @@ pub fn solve_part2(input: &str) -> i64 {
             );
             let inv_rhs_rem = (inv_0_rhs.0 % det, inv_0_rhs.1 % det);
             let inv_rhs_div = (inv_0_rhs.0 / det, inv_0_rhs.1 / det);
-            if inv_rhs_rem != (0, 0) {
-                0
-            } else {
+            if inv_rhs_rem == (0, 0) {
                 inv_rhs_div.0 * 3 + inv_rhs_div.1
+            } else {
+                0
             }
         })
         .sum::<i64>();

@@ -99,7 +99,7 @@ enum Dir {
 }
 
 impl Dir {
-    fn opp(self) -> Self {
+    const fn opp(self) -> Self {
         match self {
             Self::U => Self::D,
             Self::D => Self::U,
@@ -153,10 +153,10 @@ pub fn solve_part2(input: &str) -> usize {
                 if grid.grid[i][j] == region {
                     area += 1;
                     for b in grid.borders((i, j)) {
-                        if !borders.contains(&(b.0, b.1, b.2.opp())) {
-                            borders.insert(b);
-                        } else {
+                        if borders.contains(&(b.0, b.1, b.2.opp())) {
                             borders.remove(&(b.0, b.1, b.2.opp()));
+                        } else {
+                            borders.insert(b);
                         }
                     }
                 }

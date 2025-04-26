@@ -8,7 +8,7 @@ pub fn solve_part1(input: &str) -> usize {
     let mut lines = input.lines();
     let line = lines.next().unwrap();
     let mut patterns = line.trim().split(", ").collect_vec();
-    patterns.sort();
+    patterns.sort_unstable();
     lines.next().unwrap();
     let mut count = 0;
     let mut cache = HashMap::new();
@@ -50,7 +50,7 @@ pub fn solve_part2(input: &str) -> usize {
     let mut lines = input.lines();
     let line = lines.next().unwrap();
     let mut patterns = line.trim().split(", ").collect_vec();
-    patterns.sort();
+    patterns.sort_unstable();
     lines.next().unwrap();
     let mut count = 0;
     let mut cache = HashMap::new();

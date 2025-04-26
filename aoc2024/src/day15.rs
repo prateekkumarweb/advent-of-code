@@ -278,7 +278,7 @@ impl Grid2 {
             (Item::Empty, _, Dir::Left) => {}
             (_, Item::Empty, Dir::Right) => {}
             (Item::BoxClose, _, Dir::Left) => {
-                self.move_box(self.next_position(next_pos, Dir::Left).unwrap(), dir)
+                self.move_box(self.next_position(next_pos, Dir::Left).unwrap(), dir);
             }
             (_, Item::BoxOpen, Dir::Right) => self.move_box(next_pos_1, dir),
             (Item::Empty, Item::BoxClose, _) => unreachable!(),

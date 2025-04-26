@@ -8,7 +8,7 @@ pub fn solve_part1(input: &str) -> usize {
     let input = input
         .lines()
         .map(|l| {
-            let mut parts = l.split("-");
+            let mut parts = l.split('-');
             (
                 parts.next().unwrap().trim().to_string(),
                 parts.next().unwrap().trim().to_string(),
@@ -43,7 +43,7 @@ pub fn solve_part2(input: &str) -> String {
     let input = input
         .lines()
         .map(|l| {
-            let mut parts = l.split("-");
+            let mut parts = l.split('-');
             (
                 parts.next().unwrap().trim().to_string(),
                 parts.next().unwrap().trim().to_string(),
@@ -59,7 +59,11 @@ pub fn solve_part2(input: &str) -> String {
     }
     let vertices = connected.keys().cloned().collect_vec();
     let mut cliques = HashSet::from_iter(input.iter().map(|(a, b)| vec![a.clone(), b.clone()]));
-    let highest_degree = connected.values().map(|v| v.len()).max().unwrap();
+    let highest_degree = connected
+        .values()
+        .map(std::collections::HashSet::len)
+        .max()
+        .unwrap();
     for _ in 3..=highest_degree {
         let mut current_cliques = HashSet::new();
         for clique in &cliques {
