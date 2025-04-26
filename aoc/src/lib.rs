@@ -78,7 +78,7 @@ pub fn aoc_main(input: TokenStream) -> TokenStream {
     let mut stream: proc_macro2::TokenStream = quote! {};
     for (d, sol) in soltutions {
         let day = Ident::new(&format!("day{:02}", d), Span::call_site());
-        let input_str = format!("../input/{}/day{}.txt", year, d);
+        let input_str = format!("../../input/{}/day{:02}.txt", year, d);
         if let Some(p1) = &sol.part_1 {
             let p1 = Ident::new(p1, Span::call_site());
             stream = quote! {
