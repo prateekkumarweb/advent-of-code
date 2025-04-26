@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 #[aoc(day22, part1)]
 pub fn part_1(input: &str) -> String {

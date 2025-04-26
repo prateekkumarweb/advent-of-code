@@ -3,7 +3,7 @@ use std::{
     hash::{Hash, Hasher},
 };
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 #[derive(Debug, Hash, PartialEq, Eq, Clone)]
 struct Grid(Vec<Vec<char>>);

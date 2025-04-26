@@ -1,6 +1,6 @@
 use std::collections::{HashMap, VecDeque};
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 #[derive(Debug, Clone, Copy)]
 enum Op {

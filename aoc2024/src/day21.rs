@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[aoc(day21, part1)]

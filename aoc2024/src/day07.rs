@@ -1,6 +1,6 @@
 use std::iter::repeat_n;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[aoc(day7, part1)]

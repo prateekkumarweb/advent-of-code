@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 fn count_symbols(grid: &Vec<Vec<char>>, start_x: usize, end_x: usize, y: usize) -> usize {
     let mut neighbours = vec![];

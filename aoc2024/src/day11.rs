@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[aoc(day11, part1)]

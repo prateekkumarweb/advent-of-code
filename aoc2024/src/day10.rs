@@ -1,6 +1,6 @@
 use std::{cell::RefCell, rc::Rc};
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[aoc(day10, part1)]

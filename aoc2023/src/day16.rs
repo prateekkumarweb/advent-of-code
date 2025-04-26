@@ -1,6 +1,6 @@
 use std::collections::VecDeque;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[derive(Debug)]

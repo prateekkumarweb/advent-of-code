@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 fn find_diff(series: &[i64]) -> Vec<i64> {

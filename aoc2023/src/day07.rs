@@ -1,6 +1,6 @@
 #![allow(clippy::cast_possible_truncation)]
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[derive(Debug)]

@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 #[aoc(day5, part1)]
 pub fn solve_part1(input: &str) -> usize {

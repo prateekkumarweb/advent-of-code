@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[aoc(day22, part1)]
@@ -7,8 +7,6 @@ pub fn solve_part1(input: &str) -> usize {
         .lines()
         .map(|l| l.parse::<usize>().unwrap())
         .collect_vec();
-
-    
 
     input.into_iter().map(gen_secret_number).sum::<usize>()
 }

@@ -3,7 +3,7 @@ use std::{
     u32,
 };
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 struct Grid {
     grid: Vec<Vec<u32>>,

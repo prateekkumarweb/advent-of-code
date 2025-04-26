@@ -2,7 +2,7 @@
 
 use std::collections::HashMap;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 fn count_arrangement(input: &str, groups: &[usize]) -> usize {

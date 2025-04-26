@@ -2,7 +2,7 @@
 #![allow(clippy::cast_sign_loss)]
 #![allow(clippy::cast_possible_truncation)]
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 fn find_num_wins(time: u64, distance: u64) -> u64 {
     let d = ((time * time - 4 * distance) as f64).sqrt();

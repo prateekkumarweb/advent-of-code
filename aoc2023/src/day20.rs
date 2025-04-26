@@ -3,7 +3,7 @@ use std::{
     ops,
 };
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 use num::integer::Roots;
 

@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 #[aoc(day25, part1)]
 pub fn solve_part1(input: &str) -> usize {

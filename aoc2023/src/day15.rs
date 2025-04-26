@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 
 fn compute_hash(input: &str, mut current: usize) -> usize {
     input.chars().for_each(|c| {

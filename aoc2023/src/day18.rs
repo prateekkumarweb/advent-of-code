@@ -1,6 +1,6 @@
 use std::ops::Div;
 
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use itertools::Itertools;
 
 #[derive(Debug, Clone, Copy)]

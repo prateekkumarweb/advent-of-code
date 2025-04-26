@@ -1,4 +1,4 @@
-use aoc_runner_derive::aoc;
+use aoc::aoc;
 use regex::Regex;
 
 #[aoc(day2, part1)]
