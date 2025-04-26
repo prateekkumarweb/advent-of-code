@@ -1,3 +1,4 @@
+pub use clap::Parser;
 use std::{
     collections::HashMap,
     sync::{LazyLock, RwLock},
@@ -31,4 +32,10 @@ impl Input<'_> for usize {
     fn parse(input: &'_ str) -> Self {
         input.parse().unwrap()
     }
+}
+
+#[derive(Parser, Debug)]
+pub struct Args {
+    #[arg(short, long)]
+    pub day: Option<u8>,
 }

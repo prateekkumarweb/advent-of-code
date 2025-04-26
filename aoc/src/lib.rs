@@ -73,16 +73,17 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
 pub fn aoc_main(input: TokenStream) -> TokenStream {
     let year: u32 = input.to_string().parse().unwrap();
     let solutions = AOC_SOLUTIONS.read().unwrap();
-    let mut soltutions: Vec<(&u8, &Solution)> = solutions.iter().collect();
-    soltutions.sort_by(|a, b| a.0.cmp(b.0));
+    let mut solutions: Vec<(&u8, &Solution)> = solutions.iter().collect();
+    solutions.sort_by(|a, b| a.0.cmp(b.0));
     let mut stream: proc_macro2::TokenStream = quote! {};
-    for (d, sol) in soltutions {
+    for (d, sol) in solutions {
         let day = Ident::new(&format!("day{:02}", d), Span::call_site());
         let input_str = format!("../../input/{}/day{:02}.txt", year, d);
+        let mut day_stream = quote! {};
         if let Some(p1) = &sol.part_1 {
             let p1 = Ident::new(p1, Span::call_site());
-            stream = quote! {
-                #stream
+            day_stream = quote! {
+                #day_stream
                 let input = include_str!(#input_str);
                 let result = crate::#day::#p1(input);
                 println!("Day {:02} - Part {}: {}\n", #d, 1, result);
@@ -90,16 +91,27 @@ pub fn aoc_main(input: TokenStream) -> TokenStream {
         }
         if let Some(p2) = &sol.part_2 {
             let p2 = Ident::new(p2, Span::call_site());
-            stream = quote! {
-                #stream
+            day_stream = quote! {
+                #day_stream
                 let input = include_str!(#input_str);
                 let result = crate::#day::#p2(input);
                 println!("Day {:02} - Part {}: {}\n", #d, 2, result);
             }
         }
+        stream = quote! {
+            #stream
+
+            if days.contains(&#d) {
+                #day_stream
+            }
+        };
     }
     quote! {
         fn main() {
+            use utils::Parser;
+            let args = utils::Args::parse();
+            let days = args.day.map(|d| d..=d).unwrap_or(1..=25);
+
             #stream
         }
     }
