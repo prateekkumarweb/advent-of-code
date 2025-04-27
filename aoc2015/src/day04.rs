@@ -5,7 +5,7 @@ pub fn part_1(input: &str) -> usize {
     for i in 1.. {
         let s = format!("{}{}", input.trim(), i);
         let d = md5::compute(s.as_bytes());
-        let d = format!("{:x}", d);
+        let d = format!("{d:x}");
         if d.starts_with("00000") {
             return i;
         }
@@ -18,7 +18,7 @@ pub fn part_2(input: &str) -> usize {
     for i in 1.. {
         let s = format!("{}{}", input.trim(), i);
         let d = md5::compute(s.as_bytes());
-        let d = format!("{:x}", d);
+        let d = format!("{d:x}");
         if d.starts_with("000000") {
             return i;
         }

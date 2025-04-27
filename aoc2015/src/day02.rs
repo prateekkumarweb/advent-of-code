@@ -1,3 +1,5 @@
+#![allow(clippy::many_single_char_names)]
+
 use aoc::aoc;
 
 #[aoc(day2, part1)]

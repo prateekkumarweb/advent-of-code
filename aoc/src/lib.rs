@@ -23,8 +23,8 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut args = args.into_iter();
     let day = args.next().expect("expected day").to_string();
     let part = args.next().expect("expected part").to_string();
-    let day = if day.starts_with("day") {
-        let day = day[3..].parse::<u8>().unwrap();
+    let day = if let Some(stripped) = day.strip_prefix("day") {
+        let day = stripped.parse::<u8>().unwrap();
         if !(1..=25).contains(&day) {
             panic!("Expected from day1 to day25");
         }
@@ -32,8 +32,8 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     } else {
         panic!("Expected day");
     };
-    let part = if part.starts_with("part") {
-        let part = part[4..].parse::<u8>().unwrap();
+    let part = if let Some(stripped) = part.strip_prefix("part") {
+        let part = stripped.parse::<u8>().unwrap();
         if !(1..=2).contains(&part) {
             panic!("Expected part1 or part2");
         }
