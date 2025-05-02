@@ -43,7 +43,7 @@ pub fn aoc(args: TokenStream, input: TokenStream) -> TokenStream {
     };
     let input = parse_macro_input!(input as ItemFn);
     let fn_name = &input.sig.ident;
-    let new_fn_name = Ident::new(&format!("aoc_day{}_part{}", day, part), Span::call_site());
+    let new_fn_name = Ident::new(&format!("part{}", part), Span::call_site());
     assert_eq!(input.sig.inputs.len(), 1);
 
     let mut lock = AOC_SOLUTIONS.write().unwrap();
