@@ -1,7 +1,4 @@
-use std::{
-    collections::{HashMap, HashSet},
-    u32,
-};
+use std::collections::{HashMap, HashSet};
 
 use aoc::aoc;
 use itertools::Itertools;
