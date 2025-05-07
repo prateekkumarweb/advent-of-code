@@ -78,6 +78,7 @@ dependencies = [
  "aoc",
  "itertools",
  "md5",
+ "regex",
  "serde_json",
  "utils",
 ]
