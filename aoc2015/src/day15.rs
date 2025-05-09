@@ -26,7 +26,7 @@ impl Add for Ingredient {
 }
 
 impl Ingredient {
-    fn times(self, mul: i32) -> Self {
+    const fn times(self, mul: i32) -> Self {
         Self {
             cap: self.cap * mul,
             dur: self.dur * mul,
@@ -46,13 +46,14 @@ impl Ingredient {
         }
     }
 
-    fn val(self) -> i32 {
+    const fn val(self) -> i32 {
         self.cap * self.dur * self.fla * self.tex
     }
 }
 
 #[aoc::aoc(day15, part1)]
 fn part_1(input: &str) -> i32 {
+    const MAX: i32 = 100;
     let rg = Regex::new("^\\w+: capacity (-?\\d+), durability (-?\\d+), flavor (-?\\d+), texture (-?\\d+), calories (\\d+)$").unwrap();
     let input = input
         .lines()
@@ -67,7 +68,6 @@ fn part_1(input: &str) -> i32 {
             }
         })
         .collect_vec();
-    const MAX: i32 = 100;
 
     (0..=MAX)
         .flat_map(|a| {
@@ -84,6 +84,7 @@ fn part_1(input: &str) -> i32 {
 
 #[aoc::aoc(day15, part2)]
 fn part_2(input: &str) -> i32 {
+    const MAX: i32 = 100;
     let rg = Regex::new("^\\w+: capacity (-?\\d+), durability (-?\\d+), flavor (-?\\d+), texture (-?\\d+), calories (\\d+)$").unwrap();
     let input = input
         .lines()
@@ -98,7 +99,6 @@ fn part_2(input: &str) -> i32 {
             }
         })
         .collect_vec();
-    const MAX: i32 = 100;
 
     (0..=MAX)
         .flat_map(|a| {
